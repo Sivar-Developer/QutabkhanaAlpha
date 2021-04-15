@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebAPI.Data.Seeds;
 using WebAPI.Models;
 
 namespace WebAPI.Data
@@ -15,5 +16,11 @@ namespace WebAPI.Data
         }
 
         public DbSet<Stage> Stages { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            builder.StageSeed();
+        }
     }
 }
