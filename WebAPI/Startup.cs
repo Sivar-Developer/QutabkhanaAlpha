@@ -30,8 +30,9 @@ namespace WebAPI
         {
             services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(Configuration)
-            })
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

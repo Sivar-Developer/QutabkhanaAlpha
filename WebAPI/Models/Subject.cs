@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Models
 {
-    public class Stage
+    public class Subject
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        public int StageId { get; set; }
         public string Name { get; set; }
-        public User User { get; set; }
-        public ICollection<Subject> Subjects { get; set; }
+        public string Image { get; set; }
+        public Stage Stage { get; set; }
+        public ICollection<Section> Sections { get; set; }
     }
 }
