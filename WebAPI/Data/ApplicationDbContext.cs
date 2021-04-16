@@ -16,8 +16,9 @@ namespace WebAPI.Data
         }
 
         public DbSet<Stage> Stages { get; set; }
-
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<Section> Sections { get; set; }
+        public DbSet<Question> Questions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

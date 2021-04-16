@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using WebAPI.Configurations;
+using WebAPI.Models;
 using WebAPI.Models.DTOs.Requests;
 using WebAPI.Models.DTOs.Responses;
 
@@ -20,10 +21,10 @@ namespace WebAPI.Controllers
     [ApiController]
     public class OAuthController : ControllerBase
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<User> _userManager;
         private readonly JwtConfig _jwtConfig;
 
-        public OAuthController(UserManager<IdentityUser> userManager, IOptionsMonitor<JwtConfig> optionsMonitor)
+        public OAuthController(UserManager<User> userManager, IOptionsMonitor<JwtConfig> optionsMonitor)
         {
             _userManager = userManager;
             _jwtConfig = optionsMonitor.CurrentValue;
@@ -55,7 +56,7 @@ namespace WebAPI.Controllers
                 });
             }
 
-            var newUser = new IdentityUser()
+            var newUser = new User()
             {
                 Email = user.Email,
                 UserName = user.Username
@@ -129,7 +130,7 @@ namespace WebAPI.Controllers
             });
         }
 
-        private string GenerateJwtToken(IdentityUser user)
+        private string GenerateJwtToken(User user)
         {
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
 
