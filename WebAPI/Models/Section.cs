@@ -8,8 +8,9 @@ namespace WebAPI.Models
 {
     public class Section
     {
-        public int Id { get; set; }
-        public int Orderable { get; set; }
+        [Key]
+        public int? Id { get; set; }
+        public int? Orderable { get; set; }
         public string Name { get; set; }
         public Stage Stage { get; set; }
         public Subject Subject { get; set; }

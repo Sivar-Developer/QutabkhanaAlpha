@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using WebAPI.Data;
 using WebAPI.Models;
@@ -29,7 +30,8 @@ namespace WebAPI.Controllers
         [HttpGet("api/subjects")]
         public async Task<IActionResult> SubjectsIndex()
         {
-            var user = await _userManager.FindByEmailAsync("info@sivargulan.com");
+            var email = User.Claims.Where(x => x.Type == ClaimTypes.Email).FirstOrDefault()?.Value;
+            var user = await _userManager.FindByEmailAsync(email);
             if (user.StageId == null) return NotFound();
 
             var subjects = await _context.Subjects.Where(s => s.StageId == user.StageId).Include(s => s.Sections).ToListAsync();
