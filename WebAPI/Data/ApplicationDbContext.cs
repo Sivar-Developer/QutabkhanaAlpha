@@ -19,6 +19,7 @@ namespace WebAPI.Data
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
