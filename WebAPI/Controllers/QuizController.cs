@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("api/subjects")]
-        public async Task<IActionResult> subjectsIndex()
+        public async Task<IActionResult> SubjectsIndex()
         {
             var user = await _userManager.FindByEmailAsync("info@sivargulan.com");
             if (user.StageId == null) return NotFound();
